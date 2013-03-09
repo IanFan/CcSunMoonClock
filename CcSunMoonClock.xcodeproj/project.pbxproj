@@ -131,8 +131,13 @@
 		18B5B66916EB396E003BEE7E /* vec4.c in Sources */ = {isa = PBXBuildFile; fileRef = 18B5B66816EB396E003BEE7E /* vec4.c */; };
 		18B5B66E16EB396E003BEE7E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B5B66D16EB396E003BEE7E /* main.m */; };
 		18B5B67116EB396E003BEE7E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B5B67016EB396E003BEE7E /* AppDelegate.m */; };
-		18B5B67416EB396E003BEE7E /* HelloWorldLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B5B67316EB396E003BEE7E /* HelloWorldLayer.m */; };
 		18B5B67716EB396E003BEE7E /* IntroLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B5B67616EB396E003BEE7E /* IntroLayer.m */; };
+		18B5B67F16EB3B31003BEE7E /* CcSunMoonClockLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B5B67E16EB3B31003BEE7E /* CcSunMoonClockLayer.m */; };
+		18B5B68516EB3BB8003BEE7E /* sunMoonClock_sun.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B5B68016EB3BB8003BEE7E /* sunMoonClock_sun.png */; };
+		18B5B68616EB3BB8003BEE7E /* sunMoonClock_moon.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B5B68116EB3BB8003BEE7E /* sunMoonClock_moon.png */; };
+		18B5B68716EB3BB8003BEE7E /* sunMoonClock_clock.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B5B68216EB3BB8003BEE7E /* sunMoonClock_clock.png */; };
+		18B5B68816EB3BB8003BEE7E /* SunMoonClock.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B5B68416EB3BB8003BEE7E /* SunMoonClock.m */; };
+		18B5B68A16EB3D05003BEE7E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B5B68916EB3D05003BEE7E /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -394,10 +399,16 @@
 		18B5B66D16EB396E003BEE7E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		18B5B66F16EB396E003BEE7E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		18B5B67016EB396E003BEE7E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		18B5B67216EB396E003BEE7E /* HelloWorldLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelloWorldLayer.h; sourceTree = "<group>"; };
-		18B5B67316EB396E003BEE7E /* HelloWorldLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelloWorldLayer.m; sourceTree = "<group>"; };
 		18B5B67516EB396E003BEE7E /* IntroLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntroLayer.h; sourceTree = "<group>"; };
 		18B5B67616EB396E003BEE7E /* IntroLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntroLayer.m; sourceTree = "<group>"; };
+		18B5B67D16EB3B31003BEE7E /* CcSunMoonClockLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CcSunMoonClockLayer.h; sourceTree = "<group>"; };
+		18B5B67E16EB3B31003BEE7E /* CcSunMoonClockLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CcSunMoonClockLayer.m; sourceTree = "<group>"; };
+		18B5B68016EB3BB8003BEE7E /* sunMoonClock_sun.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sunMoonClock_sun.png; sourceTree = "<group>"; };
+		18B5B68116EB3BB8003BEE7E /* sunMoonClock_moon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sunMoonClock_moon.png; sourceTree = "<group>"; };
+		18B5B68216EB3BB8003BEE7E /* sunMoonClock_clock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sunMoonClock_clock.png; sourceTree = "<group>"; };
+		18B5B68316EB3BB8003BEE7E /* SunMoonClock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SunMoonClock.h; sourceTree = "<group>"; };
+		18B5B68416EB3BB8003BEE7E /* SunMoonClock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SunMoonClock.m; sourceTree = "<group>"; };
+		18B5B68916EB3D05003BEE7E /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -423,6 +434,7 @@
 		18B5B4D916EB396C003BEE7E = {
 			isa = PBXGroup;
 			children = (
+				18B5B68916EB3D05003BEE7E /* Default-568h@2x.png */,
 				18B5B4F716EB396C003BEE7E /* CcSunMoonClock */,
 				18B5B4E416EB396C003BEE7E /* Frameworks */,
 				18B5B4E316EB396C003BEE7E /* Products */,
@@ -458,10 +470,15 @@
 			children = (
 				18B5B66F16EB396E003BEE7E /* AppDelegate.h */,
 				18B5B67016EB396E003BEE7E /* AppDelegate.m */,
-				18B5B67216EB396E003BEE7E /* HelloWorldLayer.h */,
-				18B5B67316EB396E003BEE7E /* HelloWorldLayer.m */,
 				18B5B67516EB396E003BEE7E /* IntroLayer.h */,
 				18B5B67616EB396E003BEE7E /* IntroLayer.m */,
+				18B5B67D16EB3B31003BEE7E /* CcSunMoonClockLayer.h */,
+				18B5B67E16EB3B31003BEE7E /* CcSunMoonClockLayer.m */,
+				18B5B68316EB3BB8003BEE7E /* SunMoonClock.h */,
+				18B5B68416EB3BB8003BEE7E /* SunMoonClock.m */,
+				18B5B68016EB3BB8003BEE7E /* sunMoonClock_sun.png */,
+				18B5B68116EB3BB8003BEE7E /* sunMoonClock_moon.png */,
+				18B5B68216EB3BB8003BEE7E /* sunMoonClock_clock.png */,
 				18B5B4F816EB396C003BEE7E /* Resources */,
 				18B5B51216EB396C003BEE7E /* libs */,
 				18B5B66B16EB396E003BEE7E /* Supporting Files */,
@@ -895,6 +912,10 @@
 				18B5B50E16EB396C003BEE7E /* Icon@2x.png in Resources */,
 				18B5B51116EB396C003BEE7E /* iTunesArtwork in Resources */,
 				18B5B64F16EB396E003BEE7E /* ChangeLog in Resources */,
+				18B5B68516EB3BB8003BEE7E /* sunMoonClock_sun.png in Resources */,
+				18B5B68616EB3BB8003BEE7E /* sunMoonClock_moon.png in Resources */,
+				18B5B68716EB3BB8003BEE7E /* sunMoonClock_clock.png in Resources */,
+				18B5B68A16EB3D05003BEE7E /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1007,8 +1028,9 @@
 				18B5B66916EB396E003BEE7E /* vec4.c in Sources */,
 				18B5B66E16EB396E003BEE7E /* main.m in Sources */,
 				18B5B67116EB396E003BEE7E /* AppDelegate.m in Sources */,
-				18B5B67416EB396E003BEE7E /* HelloWorldLayer.m in Sources */,
 				18B5B67716EB396E003BEE7E /* IntroLayer.m in Sources */,
+				18B5B67F16EB3B31003BEE7E /* CcSunMoonClockLayer.m in Sources */,
+				18B5B68816EB3BB8003BEE7E /* SunMoonClock.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1112,6 +1134,7 @@
 				18B5B67C16EB396E003BEE7E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
