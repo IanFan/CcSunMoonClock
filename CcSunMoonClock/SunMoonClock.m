@@ -6,17 +6,34 @@
 //
 //
 
+#define SUNMOONCLOCK_SUNSET_INT 30
+
 #import "SunMoonClock.h"
 
 @implementation SunMoonClock
 @synthesize sunSprite=_sunSprite, moonSprite=_moonSprite, clockSprite=_clockSprite, sunCurrentMinute=_sunCurrentMinute, moonCurrentMinute=_moonCurrentMinute, moonFinalMinute=_moonFinalMinute;
 
+#pragma mark - Control
+
+-(void)setLongerOrShroterDayWithEditMinute:(int)editMin {
+  _moonFinalMinute += editMin;
+}
+
+-(void)setRestartWithSunInitMinute:(int)sunInitMin moonInitMinute:(int)moonInitMin moonFinalMinute:(int)moonFinalMin {
+  _sunCurrentMinute = sunInitMin;
+  _moonCurrentMinute = moonInitMin;
+  _moonFinalMinute = moonFinalMin;
+  
+  [self setClockRotationWithSprite:_sunSprite gameMinute:_sunCurrentMinute];
+  [self setClockRotationWithSprite:_moonSprite gameMinute:_moonCurrentMinute];
+  
+  [self setSunsetColor];
+}
+
 #pragma mark - Update
 
--(void)updateClock:(ccTime)dt {
-  if (_sunCurrentMinute == _moonCurrentMinute) {
-    NSLog(@"timeOut");
-    
+-(void)update:(ccTime)dt {
+  if (_sunCurrentMinute >= _moonCurrentMinute) {
     //time-out
     if ([self.sunMoonClockDelegate respondsToSelector:@selector(sunMoonClockDelegateSunChasedMoon)] == YES) {
       [self.sunMoonClockDelegate sunMoonClockDelegateSunChasedMoon];
@@ -43,14 +60,8 @@
         if (_moonCurrentMinute > _moonFinalMinute) _moonCurrentMinute --;
       }
       
-    }
-    
-    //sunset, sun is becoming black when almost close to moon
-    int sunsetMinute = 30;
-    int differentMinute = _moonCurrentMinute - _sunCurrentMinute;
-    if (differentMinute <= sunsetMinute) {
-      float color = 255.0f*differentMinute/sunsetMinute;
-      _sunSprite.color = ccc3(color, color, color);
+      //sunset, sun is becoming black when almost close to moon
+      [self setSunsetColor];
     }
     
   }
@@ -58,16 +69,13 @@
   float adjustMinute = (float)_currentDt/_dtPerMinute;
   
   [self setClockRotationWithSprite:_sunSprite gameMinute:_sunCurrentMinute+adjustMinute];
-  _sunSprite.rotation += _sunAdjustDegree;
   
   if (_moonCurrentMinute != _moonFinalMinute) {
     if (_moonCurrentMinute < _moonFinalMinute) {
       [self setClockRotationWithSprite:_moonSprite gameMinute:(_moonCurrentMinute + 2*adjustMinute)];
-      _moonSprite.rotation += _moonAdjustDegree;
       
     }else if (_moonCurrentMinute > _moonFinalMinute) {
       [self setClockRotationWithSprite:_moonSprite gameMinute:(_moonCurrentMinute - 2*adjustMinute)];
-      _moonSprite.rotation += _moonAdjustDegree;
     }
   }
   
@@ -78,29 +86,48 @@
 -(void)setClockRotationWithSprite:(CCSprite*)targetSprite gameMinute:(float)gameMinute {
   float degreesPerMinute = 360.0f/(_hoursPerCircle*60);
   targetSprite.rotation = degreesPerMinute*gameMinute;
+  
+  if (targetSprite == _sunSprite) {
+    _sunSprite.rotation += _sunAdjustDegree;
+  }else if (targetSprite == _moonSprite) {
+    _moonSprite.rotation += _moonAdjustDegree;
+  }
+}
+
+-(void)setSunsetColor {
+  int sunsetMinute = SUNMOONCLOCK_SUNSET_INT;
+  int differentMinute = _moonCurrentMinute - _sunCurrentMinute;
+  if (differentMinute <= sunsetMinute) {
+    float color = MAX(255.0f*differentMinute/sunsetMinute, 0);
+    if (sunsetMinute <=2) color = 0;
+    
+    _sunSprite.color = ccc3(color, color, color);
+  } else {
+    _sunSprite.color = ccc3(255, 255, 255);
+  }
 }
 
 #pragma mark - Init
 
 -(void)setupSunMoonClockWithParentLayer:(CCLayer *)parentL clockPos:(CGPoint)clockPos hoursPerCercle:(int)hoursPerCir dtPerMinute:(int)dtPerMin {
-  self.parentLayer = parentL;
+  _parentLayer = parentL;
   _hoursPerCircle = hoursPerCir;
   _dtPerMinute = dtPerMin;
   
   // sun
   self.sunSprite = [CCSprite spriteWithFile:@"sunMoonClock_sun.png"];
   _sunSprite.position = clockPos;
-  [self.parentLayer addChild:self.sunSprite];
+  [_parentLayer addChild:self.sunSprite];
   
   // moon
   self.moonSprite = [CCSprite spriteWithFile:@"sunMoonClock_moon.png"];
   _moonSprite.position = clockPos;
-  [self.parentLayer addChild:self.moonSprite];
+  [_parentLayer addChild:self.moonSprite];
   
   // clock
   self.clockSprite = [CCSprite spriteWithFile:@"sunMoonClock_clock.png"];
   _clockSprite.position = clockPos;
-  [self.parentLayer addChild:self.clockSprite];
+  [_parentLayer addChild:self.clockSprite];
 }
 
 -(void)setupAdjustWithSize:(float)size sunDegree:(float)sunDegree moonDegree:(float)moonDegree {
@@ -117,9 +144,7 @@
   _sunCurrentMinute = sunCurrentMin, _moonCurrentMinute = moonCurrentMin, _moonFinalMinute = moonFinalMin;
   
   [self setClockRotationWithSprite:_sunSprite gameMinute:_sunCurrentMinute];
-  _sunSprite.rotation += _sunAdjustDegree;
   [self setClockRotationWithSprite:_moonSprite gameMinute:_moonCurrentMinute];
-  _moonSprite.rotation += _moonAdjustDegree;
 }
 
 -(id) init {
@@ -130,11 +155,10 @@
 }
 
 - (void) dealloc {
-//  [self unscheduleUpdate];
-  
-  [self.parentLayer removeChild:self.sunSprite cleanup:NO], self.sunSprite = nil;
-  [self.parentLayer removeChild:self.moonSprite cleanup:NO], self.moonSprite = nil;
-  [self.parentLayer removeChild:self.clockSprite cleanup:NO], self.clockSprite = nil;
+  self.sunSprite = nil;
+  self.moonSprite = nil;
+  self.clockSprite = nil;
+  self.sunMoonClockDelegate = nil;
   
 	[super dealloc];
 }

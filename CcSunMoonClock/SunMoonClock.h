@@ -23,6 +23,8 @@
 
 @interface SunMoonClock : NSObject
 {
+  CCLayer *_parentLayer;
+  
   int _hoursPerCircle;
   int _dtPerMinute;
   int _currentDt;
@@ -32,7 +34,6 @@
 }
 
 @property (nonatomic,assign) id <SunMoonClockDelegate> sunMoonClockDelegate;
-@property (nonatomic,retain) CCLayer *parentLayer;
 @property (nonatomic,retain) CCSprite *sunSprite;
 @property (nonatomic,retain) CCSprite *moonSprite;
 @property (nonatomic,retain) CCSprite *clockSprite;
@@ -43,7 +44,11 @@
 -(void)setupSunMoonClockWithParentLayer:(CCLayer*)parentL clockPos:(CGPoint)clockPos hoursPerCercle:(int)hoursPerCir dtPerMinute:(int)dtPerMin;
 -(void)setupAdjustWithSize:(float)size sunDegree:(float)sunDegree moonDegree:(float)moonDegree;//Optional
 -(void)setupSunCurrentMinute:(int)sunCurrentMin moonCurrentMinute:(int)moonCurrentMin moonFinalMinute:(int)moonFinalMin;
--(void)updateClock:(ccTime)dt;
+-(void)update:(ccTime)dt;
+
+//Optional Control
+-(void)setLongerOrShroterDayWithEditMinute:(int)editMin;
+-(void)setRestartWithSunInitMinute:(int)sunInitMin moonInitMinute:(int)moonInitMin moonFinalMinute:(int)moonFinalMin;
 
 @end
 
