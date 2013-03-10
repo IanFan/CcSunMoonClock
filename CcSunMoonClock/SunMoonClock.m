@@ -28,6 +28,7 @@
   [self setClockRotationWithSprite:_moonSprite gameMinute:_moonCurrentMinute];
   
   [self setSunsetColor];
+  if (_moonCurrentMinute - _sunCurrentMinute > SUNMOONCLOCK_SUNSET_INT) _sunSprite.color = ccc3(255, 255, 255);
 }
 
 #pragma mark - Update
@@ -59,11 +60,10 @@
         _moonCurrentMinute --;
         if (_moonCurrentMinute > _moonFinalMinute) _moonCurrentMinute --;
       }
-      
-      //sunset, sun is becoming black when almost close to moon
-      [self setSunsetColor];
     }
     
+    //sunset, sun is becoming black when almost close to moon
+    [self setSunsetColor];
   }
   
   float adjustMinute = (float)_currentDt/_dtPerMinute;
@@ -102,8 +102,6 @@
     if (sunsetMinute <=2) color = 0;
     
     _sunSprite.color = ccc3(color, color, color);
-  } else {
-    _sunSprite.color = ccc3(255, 255, 255);
   }
 }
 
