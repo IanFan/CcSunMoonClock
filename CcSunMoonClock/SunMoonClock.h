@@ -34,6 +34,8 @@
 }
 
 @property (nonatomic,assign) id <SunMoonClockDelegate> sunMoonClockDelegate;
+@property CGPoint position;
+@property float length;
 @property (nonatomic,retain) CCSprite *sunSprite;
 @property (nonatomic,retain) CCSprite *moonSprite;
 @property (nonatomic,retain) CCSprite *clockSprite;

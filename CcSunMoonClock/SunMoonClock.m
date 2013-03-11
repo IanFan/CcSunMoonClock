@@ -11,7 +11,7 @@
 #import "SunMoonClock.h"
 
 @implementation SunMoonClock
-@synthesize sunSprite=_sunSprite, moonSprite=_moonSprite, clockSprite=_clockSprite, sunCurrentMinute=_sunCurrentMinute, moonCurrentMinute=_moonCurrentMinute, moonFinalMinute=_moonFinalMinute;
+@synthesize sunSprite=_sunSprite, moonSprite=_moonSprite, clockSprite=_clockSprite, sunCurrentMinute=_sunCurrentMinute, moonCurrentMinute=_moonCurrentMinute, moonFinalMinute=_moonFinalMinute, position=_position, length=_length;
 
 #pragma mark - Control
 
@@ -109,6 +109,7 @@
 
 -(void)setupSunMoonClockWithParentLayer:(CCLayer *)parentL clockPos:(CGPoint)clockPos hoursPerCercle:(int)hoursPerCir dtPerMinute:(int)dtPerMin {
   _parentLayer = parentL;
+  _position = clockPos;
   _hoursPerCircle = hoursPerCir;
   _dtPerMinute = dtPerMin;
   
@@ -129,6 +130,8 @@
 }
 
 -(void)setupAdjustWithSize:(float)size sunDegree:(float)sunDegree moonDegree:(float)moonDegree {
+  _length = size;
+  
   float scale = size/_clockSprite.boundingBox.size.width;
   _sunSprite.scale = scale;
   _moonSprite.scale = scale;
@@ -153,10 +156,10 @@
 }
 
 - (void) dealloc {
+  self.sunMoonClockDelegate = nil;
   self.sunSprite = nil;
   self.moonSprite = nil;
   self.clockSprite = nil;
-  self.sunMoonClockDelegate = nil;
   
 	[super dealloc];
 }
