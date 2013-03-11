@@ -15,11 +15,11 @@
 
 #pragma mark - Control
 
--(void)setLongerOrShroterDayWithEditMinute:(int)editMin {
+-(void)changeMoonWithEditMinute:(int)editMin {
   _moonFinalMinute += editMin;
 }
 
--(void)setRestartWithSunInitMinute:(int)sunInitMin moonInitMinute:(int)moonInitMin moonFinalMinute:(int)moonFinalMin {
+-(void)restartWithSunInitMinute:(int)sunInitMin moonInitMinute:(int)moonInitMin moonFinalMinute:(int)moonFinalMin {
   _sunCurrentMinute = sunInitMin;
   _moonCurrentMinute = moonInitMin;
   _moonFinalMinute = moonFinalMin;

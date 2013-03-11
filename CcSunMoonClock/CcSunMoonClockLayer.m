@@ -31,7 +31,7 @@
   CCLabelTTF *label = [CCLabelTTF labelWithString:@"Restart" fontName:@"Helvetica" fontSize:(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)? 32:20];
   label.color = ccc3(0, 0, 0);
   CCMenuItem *item = [CCMenuItemLabel itemWithLabel:label block:^(id sender){
-    [sunMoonClock setRestartWithSunInitMinute:0 moonInitMinute:8*60 moonFinalMinute:8*60];
+    [sunMoonClock restartWithSunInitMinute:0 moonInitMinute:8*60 moonFinalMinute:8*60];
     [self unschedule:@selector(updateClock:)];
     [self schedule:@selector(updateClock:) interval:1.0/60.0];
   }];
@@ -46,7 +46,7 @@
   CCLabelTTF *label = [CCLabelTTF labelWithString:@"Longer Day" fontName:@"Helvetica" fontSize:(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)? 32:20];
   label.color = ccc3(0, 0, 0);
   CCMenuItem *item = [CCMenuItemLabel itemWithLabel:label block:^(id sender){
-    [sunMoonClock setLongerOrShroterDayWithEditMinute:60];
+    [sunMoonClock changeMoonWithEditMinute:60];
     [self unschedule:@selector(updateClock:)];
     [self schedule:@selector(updateClock:) interval:1.0/60.0];
   }];
@@ -61,7 +61,7 @@
   CCLabelTTF *label = [CCLabelTTF labelWithString:@"Shorter Day" fontName:@"Helvetica" fontSize:(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)? 32:20];
   label.color = ccc3(0, 0, 0);
   CCMenuItem *item = [CCMenuItemLabel itemWithLabel:label block:^(id sender){
-    [sunMoonClock setLongerOrShroterDayWithEditMinute:-60];
+    [sunMoonClock changeMoonWithEditMinute:-60];
     [self unschedule:@selector(updateClock:)];
     [self schedule:@selector(updateClock:) interval:1.0/60.0];
   }];
@@ -100,8 +100,7 @@
 
 -(id) init {
 	if( (self = [super init]) ) {
-    //bg
-    [self addChild:[CCLayerColor layerWithColor:ccc4(255, 255, 255, 255)] z:-1];
+    [self addChild:[CCLayerColor layerWithColor:ccc4(255, 255, 255, 255)] z:-1];//background
     
     [self setupClock];
     

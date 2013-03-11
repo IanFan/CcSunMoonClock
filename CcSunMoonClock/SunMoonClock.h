@@ -47,8 +47,8 @@
 -(void)update:(ccTime)dt;
 
 //Optional Control
--(void)setLongerOrShroterDayWithEditMinute:(int)editMin;
--(void)setRestartWithSunInitMinute:(int)sunInitMin moonInitMinute:(int)moonInitMin moonFinalMinute:(int)moonFinalMin;
+-(void)changeMoonWithEditMinute:(int)editMin;
+-(void)restartWithSunInitMinute:(int)sunInitMin moonInitMinute:(int)moonInitMin moonFinalMinute:(int)moonFinalMin;
 
 @end
 
